@@ -53,7 +53,7 @@
     },
 
     updateBody: function (contentEl, settings) {
-      var markdown = contentEl.text(),
+      var markdown = contentEl.html(),
           newContentEl = (settings.dest ? $(settings.dest) : null)
           ;
 
@@ -66,7 +66,7 @@
       }
 
       // Generate Markdown
-      newContentEl.html(marked(markdown));
+      newContentEl.html(markdown);
 
       // Prettify
       if (prettyPrint) {
@@ -125,15 +125,11 @@
     },
 
     mainProcess: function (caller, options) {
-      if (!marked) {
-        console.warn('Marked not found. Unable to proceed further.');
-        return;
-      }
 
       var target;
 
       if (caller.get(0) === document || caller.get(0) === document.body) {
-        target = $('xmp,textarea').eq(0);
+        target = $('xmp,textarea,article').eq(0);
       } else {
         target = caller;
       }

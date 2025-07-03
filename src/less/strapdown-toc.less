@@ -117,20 +117,16 @@ body {
 
 /* Styles in xs mode  */
 @media screen and (max-width: @max-xs-screen-width) {
-	.navbar {
-		 /* instead of transparent, to make the menus readable. */
-		background-color: white;
-	}
 
 	/* applying inverse style to all the links of the navbar */
 	.navbar-inverse .navbar-nav {
 		li>a {
-			color: #999;
+			color: var(--fgColor-muted);
 		}
 
 		li>a:hover,
 		li.active>a {
-			color: #333;
+			color: var(--fgColor-default);
 			text-decoration: none;
 		}
 

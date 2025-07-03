@@ -17,13 +17,19 @@
 		var pkg = grunt.file.readJSON('package.json');
 		// Computes a version number with only 2 digits (e.g. '0.4' instead of '0.4.0')
 		pkg.shortVers = pkg.version.split('.').splice(0, 2).join('.');
+		// pkg.deps = [
+		// 	// 'node_modules/jquery/dist/jquery.js',
+		// 	'node_modules/jquery/dist/jquery.min.js',
+		// 	'node_modules/marked/marked.min.js',
+		// 	'node_modules/google-code-prettify/bin/prettify.min.js',
+		// 	'node_modules/bootstrap/js/scrollspy.js'
+		// ];
 		pkg.deps = [
-			// 'vendor/jquery/dist/jquery.js',
-			'vendor/jquery/dist/jquery.min.js',
-			'vendor/marked/marked.min.js',
-			'vendor/google-code-prettify/bin/prettify.min.js',
-			'vendor/bootstrap/js/scrollspy.js'
-		];
+			'node_modules/jquery/dist/jquery.min.js',
+			'node_modules/google-code-prettify/bin/prettify.min.js',
+			'node_modules/bootstrap/js/scrollspy.js'
+		  ];
+
 
 		grunt.initConfig({
 			pkg: pkg,
@@ -56,18 +62,18 @@
 					flatten: true,  // to avoid the creation of subdirectories
 					src: [
 						'<%= pkg.deps %>',
-						'vendor/bootstrap/dist/css/bootstrap.min.css'
+						'node_modules/bootstrap/dist/css/bootstrap.min.css'
 					],
-					dest: 'demos/vendor/',
+					dest: 'demos/node_modules/',
 				},
 				testDeps: {
 					expand: true,   // enable dynamic options
 					flatten: true,  // to avoid the creation of subdirectories
 					src: [
-						'vendor/qunit/qunit/qunit.js',
-						'vendor/qunit/qunit/qunit.css'
+						'node_modules/qunit/qunit/qunit.js',
+						'node_modules/qunit/qunit/qunit.css'
 					],
-					dest: 'test/vendor/',
+					dest: 'test/node_modules/',
 				}
 			},
 
@@ -111,7 +117,7 @@
 			},
 
 			jshint: {
-				files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js', '!**/vendor/**/*.js'],
+				files: ['gruntfile.js', 'src/**/*.js', 'test/**/*.js', '!**/node_modules/**/*.js'],
 				options: {
 					globals: {
 						console: true,
@@ -146,7 +152,7 @@
 				files: {
 					src: [
 						'dist/',
-						'demos/vendor/',
+						'demos/node_modules/',
 						'tmp/'
 					]
 				}
@@ -159,6 +165,7 @@
 		grunt.registerTask('test',           ['jshint', 'qunit']);
 		grunt.registerTask('build',          ['concat', 'less']);
 		grunt.registerTask('default',        ['clean', 'copy', 'test', 'preprocess:release', 'build', 'uglify']);
+		grunt.registerTask('defaultt',        ['clean', 'copy', 'preprocess:release', 'build', 'uglify']);
 		grunt.registerTask('watch',          ['clean', 'copy', 'test', 'preprocess:dev', 'build', 'delta']);
 
 	};
