@@ -1,31 +1,7 @@
 # Strapdown.js
 
-Strapdown.js makes it embarrassingly simple to create elegant Markdown documents. No server-side compilation required.  
+See [here](https://github.com/ndossougbe/strapdown) for a more thorough description, all credit goes to the original authors. I made very minor and messy edits.
 
-This is a fork of the awesome project at http://strapdownjs.com
+I forked this to be able to only do toc generation on existing html, no markdown parsing. Instead, I use the [Github API](https://docs.github.com/en/rest/markdown/markdown?apiVersion=2022-11-28) to convert markdown to html, and I use [this](https://github.com/sindresorhus/github-markdown-css) for styling the html.
 
-This fork adds auto generated table of contents and can be used as a jQuery plugin.
-
-For more, please see:
-
-+ http://ndossougbe.github.io/strapdown
-
-## Contributor guide
-
-You will need Node.js (>0.6.x), Bower and Grunt to generate the bundles. To bundle/compile the assets, issue in the project directory:
-
-```
-$ npm install
-$ bower install
-$ grunt
-```
-
-Other available commands are:
-
-- `grunt watch` - refreshes the output files on where are changed.
-- `grunt test` - only runs the tests
-
-Bug fixes should go in the latest version - no need to bump it. New features or anything that changes the old behavior should go into a bumped version (update **version** in `package.json`)
-
-[1]:https://www.npmjs.org/package/coffee-script
-[2]:https://www.npmjs.org/package/less
+I liked the look of the toc generation in the original, and found it easier to do this than replicate it myself.
