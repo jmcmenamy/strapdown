@@ -27,6 +27,23 @@
 </head>
 <body>  
   <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    const script = document.createElement('script');
+    script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+    script.onload = () => {
+      console.log("MathJax loaded and configured");
+    };
+    document.head.appendChild(script);
+
     const base = 'https://raw.githubusercontent.com/jmcmenamy/strapdown/gh-pages/';
     const rewriteRelativeLinksAndAttrs = (markdown, baseUrl) => {
       // Rewrite Markdown links/images:
@@ -69,6 +86,14 @@
           }
         });
         document.body.appendChild(textarea);
+        if (window.MathJax?.startup?.promise) {
+          MathJax.startup.promise
+            .then(() => MathJax.typesetPromise([textarea]))
+            .then(() => console.log("MathJax rendered LaTeX."))
+            .catch(err => console.error("MathJax error:", err));
+        } else {
+          console.warn("MathJax not ready yet.");
+        }
         const script = document.createElement('script');
         script.src = 'https://jmcmenamy.github.io/strapdown/dist/strapdown.js';
         document.body.appendChild(script);
