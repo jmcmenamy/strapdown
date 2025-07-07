@@ -27,7 +27,7 @@
 </head>
 <body>  
   <script>
-    const base = 'https://raw.githubusercontent.com/jmcmenamy/meng_project/main/';
+    const base = 'https://raw.githubusercontent.com/jmcmenamy/strapdown/gh-pages/';
     const rewriteRelativeLinksAndAttrs = (markdown, baseUrl) => {
       // Rewrite Markdown links/images:
       markdown = markdown.replace(/(!?\[.*?\])\((?!https?:\/\/|#)(.*?)\)/g, (_, label, relPath) => {

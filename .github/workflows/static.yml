@@ -2,7 +2,7 @@ name: Render README and Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["gh-pages"]
     paths:
       - 'README.md'
       - '.github/workflows/**'
